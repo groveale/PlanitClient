@@ -19,12 +19,14 @@
   <StackLayout>
 
     <Entry x:Name="nameEntry"
-           Text = "your name"/>
+           Text="your name"/>
 
     <Entry x:Name="numberEntry"
-           Text = "your number"/>
+           Text="your number"/>
 
-    
+    <Entry x:Name="authEntry"
+           Text="your code"
+           isVisible="False"/>
     
   </StackLayout>
   

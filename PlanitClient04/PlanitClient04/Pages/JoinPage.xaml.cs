@@ -10,36 +10,10 @@ namespace PlanitClient04.Pages
 {
     public partial class JoinPage : ContentPage
     {
-        private Entry authEntry;
-        private Button authButton;
 
         public JoinPage()
         {
             
-            Entry nameEntry = new Entry
-            {
-                Text = "your name",
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                FontAttributes = FontAttributes.Bold,
-                TextColor = Color.White
-            };
-            Entry numberEntry = new Entry
-            {
-                Text = "your number",
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                FontAttributes = FontAttributes.Bold,
-                TextColor = Color.White
-            };
-
-            authEntry = new Entry
-            {
-                Text = "your code",
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                FontAttributes = FontAttributes.Bold,
-                TextColor = Color.White,
-                IsVisible = false
-            };
-
             Label pleaseEnterLabel = new Label()
             {
                 Text = "please enter...",
