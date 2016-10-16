@@ -10,11 +10,39 @@ namespace PlanitClient04.Pages
 {
     public partial class JoinPage : ContentPage
     {
+        private Entry authEntry, nameEntry, numberEntry;
+        private Label pleaseEnterLabel;
+        private Button authButton, joinButton;
+        private Image joinImage;
 
         public JoinPage()
         {
             
-            Label pleaseEnterLabel = new Label()
+            nameEntry = new Entry
+            {
+                Text = "your name",
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                FontAttributes = FontAttributes.Bold,
+                TextColor = Color.White
+            };
+            numberEntry = new Entry
+            {
+                Text = "your number",
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                FontAttributes = FontAttributes.Bold,
+                TextColor = Color.White
+            };
+
+            authEntry = new Entry
+            {
+                Text = "your code",
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                FontAttributes = FontAttributes.Bold,
+                TextColor = Color.White,
+                IsVisible = false
+            };
+
+            pleaseEnterLabel = new Label
             {
                 Text = "please enter...",
                 FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
@@ -23,14 +51,14 @@ namespace PlanitClient04.Pages
             };
 
 
-            Button joinButton = new Button
+            joinButton = new Button
             {
                 Text = "join",
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                 FontAttributes = FontAttributes.Bold,
                 TextColor = Color.White
             };
-            defineTap(joinButton, "join");
+            joinButton.Clicked += OnJoinButtonClicked;
 
             authButton = new Button
             {
@@ -40,7 +68,18 @@ namespace PlanitClient04.Pages
                 TextColor = Color.White,
                 IsVisible = false
             };
-            defineTap(authButton, "auth");
+            authButton.Clicked += OnAuthButtonClicked;
+
+            // Join button Decleration
+            joinImage = new Image()
+            {
+                Source = Device.OnPlatform("ic_action_bad.png",
+                                          "ic_action_bad.png",
+                                          "Images/HomePage/JoinPlanet50.png"),
+                Aspect = Aspect.AspectFill,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
 
             InitializeComponent();
 
@@ -51,6 +90,7 @@ namespace PlanitClient04.Pages
                 VerticalOptions = LayoutOptions.CenterAndExpand,
                 Children =
                 {
+                    joinImage,
                     pleaseEnterLabel,
                     nameEntry,
                     numberEntry,
@@ -59,25 +99,39 @@ namespace PlanitClient04.Pages
             };
         }
 
-        private void defineTap(Button button, string buttonName)
+        async void OnAuthButtonClicked(object sender, EventArgs args)
         {
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            if (buttonName.ToLowerInvariant() == "join")
+            throw new NotImplementedException();
+        }
+
+        async void OnJoinButtonClicked(object sender, EventArgs args)
+        {
+            // Send number to MobileAPI
+            var userNumber = numberEntry.Text;
+            bool foundNumber = await DoesUserExist(userNumber);
+
+            if (foundNumber)
             {
-                tapGestureRecognizer.Tapped += async (s, e) =>
-                {
-                    // Unlock the rest of the UI
-                    await Navigation.PushAsync(new HomePage());
-                };
+                await DisplayAlert("Already Exists", "Click OK to go to login psge", "login");
+                await Navigation.PushAsync(new JoinPage());
             }
             else
             {
-                tapGestureRecognizer.Tapped += async (s, e) =>
-                {
-                    await Navigation.PushAsync(new HomePage());
-                };
+                var userName = nameEntry.Text;
+
+                // send json to server to create user
+                CreateUser(userName, userNumber);
             }
-            button.GestureRecognizers.Add(tapGestureRecognizer);
+        }
+
+        private void CreateUser(string userName, string userNumber)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Task<bool> DoesUserExist(string userNumber)
+        {
+            throw new NotImplementedException();
         }
     }
 }

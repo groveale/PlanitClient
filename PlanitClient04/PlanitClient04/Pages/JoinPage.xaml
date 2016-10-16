@@ -4,30 +4,5 @@
              x:Class="PlanitClient04.Pages.JoinPage"
              BackgroundColor="#3C5FB6"
              Title="join">
-
-  <ContentPage.Resources>
-    <ResourceDictionary>
-      <Style TargetType="Entry">
-        <Setter FontSize = "Medium"
-                FontAttributes = "FontAttributes.Bold"
-                TextColor = "Color.White"
-                />
-      </Style>
-    </ResourceDictionary>
-  </ContentPage.Resources>
-
-  <StackLayout>
-
-    <Entry x:Name="nameEntry"
-           Text="your name"/>
-
-    <Entry x:Name="numberEntry"
-           Text="your number"/>
-
-    <Entry x:Name="authEntry"
-           Text="your code"
-           isVisible="False"/>
-    
-  </StackLayout>
   
 </ContentPage>
