@@ -20,7 +20,11 @@
 
     <Entry x:Name="nameEntry"
            Text = "your name"/>
-     
+
+    <Entry x:Name="numberEntry"
+           Text = "your number"/>
+
+    
     
   </StackLayout>
   
